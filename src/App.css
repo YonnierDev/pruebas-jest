@@ -1,59 +1,63 @@
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   background-color: #f0f2f5;
   color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.app {
-  max-width: 700px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
+#root {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem;
+  padding: 2.5rem;
+  background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
-  color: #2c3e50;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 2.5em;
   font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .todo-form {
+  width: 100%;
+  max-width: 600px;
   display: flex;
-  margin-bottom: 30px;
-  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2rem;
 }
 
 .todo-input {
   flex: 1;
-  padding: 15px;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px 0 0 8px;
-  font-size: 18px;
-  transition: border 0.3s;
-  max-width: 500px;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  border: 2px solid #e1e4e8;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
 }
 
 .todo-input:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
 }
 
 .add-button {
-  padding: 0 25px;
-  background-color: #4CAF50;
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 0 8px 8px 0;
