@@ -1,12 +1,59 @@
-# React + Vite
+# Aplicación de Tareas Simple con Pruebas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación de lista de tareas simple para aprender pruebas unitarias con React y Jest.
 
-Currently, two official plugins are available:
+## 🎯 Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Añadir tareas
+- Marcar tareas como completadas
+- Eliminar tareas
+- Pruebas unitarias incluidas
 
-## Expanding the ESLint configuration
+## 🚀 Empezar
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+2. Inicia la aplicación:
+   ```bash
+   npm run dev
+   ```
+
+3. Ejecuta las pruebas:
+   ```bash
+   npm test
+   ```
+   npm run dev
+   ```
+
+## 🧪 Ejecutar Pruebas
+
+Para ejecutar las pruebas unitarias:
+
+```bash
+npm test
+```
+
+Para ver la cobertura de pruebas:
+
+```bash
+npm test -- --coverage
+```
+
+## 📂 Estructura del Proyecto
+
+```
+src/
+├── components/
+│   ├── TodoForm.jsx      # Formulario para añadir tareas
+│   ├── TodoItem.jsx      # Componente de ítem individual
+│   └── TodoList.jsx      # Lista principal de tareas
+├── App.jsx               # Componente principal
+└── main.jsx              # Punto de entrada
+```
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT.

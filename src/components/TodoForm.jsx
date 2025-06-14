@@ -12,21 +12,19 @@ const TodoForm = ({ addTodo }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="todo-form">
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Añadir una nueva tarea..."
+        placeholder="Añadir tarea..."
         data-testid="todo-input"
-        className="todo-input"
       />
       <button 
         type="submit" 
         data-testid="add-button"
-        className="add-button"
       >
-        Añadir Tarea
+        Añadir
       </button>
     </form>
   );
