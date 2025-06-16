@@ -1,46 +1,66 @@
-# Guía de Pruebas Unitarias Sencillas
+# 🧪 Guía de Pruebas Unitarias
 
-Esta guía te muestra cómo funcionan las pruebas en esta aplicación de tareas.
+Esta guía detalla la estrategia de pruebas implementada en la aplicación de lista de tareas, siguiendo las mejores prácticas de desarrollo con React Testing Library.
 
-## 📝 Ejemplo de Prueba para el Formulario
+## 📚 Visión General de las Pruebas
 
-### Archivo: `src/components/TodoForm.test.jsx`
+La aplicación implementa pruebas unitarias para cada componente principal, asegurando que cada pieza funcione de manera aislada y en conjunto.
+
+### Tecnologías Utilizadas
+
+- **Jest**: Marco de pruebas principal
+- **React Testing Library**: Para pruebas centradas en el usuario
+- **Jest DOM**: Para aserciones específicas del DOM
+
+## 🧩 Estructura de Pruebas
+
+### 1. Pruebas del Componente Principal (`App.test.jsx`)
+
+Verifica el renderizado correcto del componente principal y su estructura básica.
 
 ```javascript
-// 1. Importamos lo necesario
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+describe('App', () => {
+  test('renderiza el título de la aplicación', () => {
+    render(<App />);
+    const titleElement = screen.getByText(/Lista de Tareas/i);
+    expect(titleElement).toBeInTheDocument();
+  });
+});
+```
+
+### 2. Pruebas del Formulario (`TodoForm.test.jsx`)
+
+Evalúa el comportamiento del formulario de añadir tareas.
+
+```javascript
 import { render, screen, fireEvent } from '@testing-library/react';
 import TodoForm from './TodoForm';
 
-// 2. Prueba: Ver que el formulario se muestra
+// Verifica la estructura del formulario
 test('muestra el input y el botón', () => {
   render(<TodoForm addTodo={() => {}} />);
-  
-  // Verificar que los elementos están en la pantalla
   expect(screen.getByTestId('todo-input')).toBeInTheDocument();
   expect(screen.getByTestId('add-button')).toBeInTheDocument();
 });
 
-// 3. Prueba: Añadir una tarea
+// Prueba el envío del formulario
 test('añade una tarea cuando se envía el formulario', () => {
-  // Preparamos un "espía" para la función addTodo
   const agregarTarea = jest.fn();
-  
-  // Mostramos el formulario
   render(<TodoForm addTodo={agregarTarea} />);
   
-  // Buscamos los elementos
   const input = screen.getByTestId('todo-input');
   const boton = screen.getByTestId('add-button');
   
-  // Simulamos que el usuario escribe y hace clic
   fireEvent.change(input, { target: { value: 'Aprender pruebas' } });
   fireEvent.click(boton);
   
-  // Verificamos que se llamó a la función con el texto correcto
   expect(agregarTarea).toHaveBeenCalledWith('Aprender pruebas');
 });
 
-// 4. Prueba: No permite tareas vacías
+// Valida entradas vacías
 test('no permite añadir tareas vacías', () => {
   const agregarTarea = jest.fn();
   render(<TodoForm addTodo={agregarTarea} />);
@@ -48,6 +68,63 @@ test('no permite añadir tareas vacías', () => {
   const boton = screen.getByTestId('add-button');
   fireEvent.click(boton);
   
+  expect(agregarTarea).not.toHaveBeenCalled();
+});
+```
+
+### 3. Pruebas de Ítems (`TodoItem.test.jsx`)
+
+Evalúa el comportamiento de los ítems individuales de la lista.
+
+### 4. Pruebas de la Lista (`TodoList.test.jsx`)
+
+Verifica la funcionalidad completa de la lista de tareas.
+
+## 🎯 Estrategia de Pruebas
+
+### Cobertura de Código
+
+Para generar un informe de cobertura:
+
+```bash
+npm test -- --coverage --watchAll=false
+```
+
+### Buenas Prácticas Implementadas
+
+1. **Pruebas Descriptivas**: Nombres claros que describen el comportamiento esperado
+2. **Aislamiento**: Cada prueba es independiente
+3. **Arrange-Act-Assert**: Estructura clara en tres fases
+4. **Mocks y Espías**: Uso de `jest.fn()` para simular funciones
+5. **Accesibilidad**: Pruebas que verifican la accesibilidad de los componentes
+
+## 🔍 Ejecución de Pruebas
+
+### Comandos Principales
+
+```bash
+# Ejecutar todas las pruebas
+npm test
+
+# Ejecutar pruebas en modo observación
+npm test -- --watch
+
+# Ver cobertura de código
+npm test -- --coverage --watchAll=false
+```
+
+## 📊 Reportes de Cobertura
+
+Después de ejecutar las pruebas con cobertura, se genera un informe en:
+```
+coverage/lcov-report/index.html
+```
+
+Este informe muestra:
+- Porcentaje de cobertura por archivo
+- Líneas cubiertas/no cubiertas
+- Funciones y ramas cubiertas
+
   expect(agregarTarea).not.toHaveBeenCalled();
 });
 ```
